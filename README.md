@@ -1,3 +1,4 @@
-# Cubethon
+# TheHatRace_Custom
 
-https://aiarcost.github.io/AA_Cubethon/
+
+https://aiarcost.github.io/TheHatRace_Custom/
