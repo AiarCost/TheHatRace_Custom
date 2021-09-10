@@ -141,13 +141,16 @@ public class PlayerControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         //did we hit another player?
         if (collision.gameObject.CompareTag("Player"))
         {
+            
             // do they have the hat?
             if(GameManagerScript.instance.GetPlayer(collision.gameObject).id ==
                 GameManagerScript.instance.playerWithHat)
             {
+                
                 //can we get the hat?
                 if (GameManagerScript.instance.CanGetHat())
                 {
+                    Debug.Log("I have been given the hat " + gameObject.name);
                     //give us the hat
                     GameManagerScript.instance.photonView.RPC("GiveHat", RpcTarget.All, id, false);
                 }

@@ -88,36 +88,50 @@ public class GameManagerScript : MonoBehaviourPunCallbacks
     {
 
         PlayerControllerScript SendBack = null;
+        int SendBackNum = -1;
 
         // remove the hat from the currently hatted player
         if (!initialGive)
         {
             //If the hat needs to be sent back since the next player will explode
             SendBack = GetPlayer(playerWithHat);
+            SendBackNum = playerWithHat;
 
             GetPlayer(playerWithHat).SetHat(false);
         }
         //Check that the hat is not meant to explode
         if (GivesTilHatExplodes > 0)
         {
-            // give the hat to the new player
-            GivesTilHatExplodes--;
-            playerWithHat = playerId;
-            GetPlayer(playerId).SetHat(true, GivesTilHatExplodes);
-            hatPickupTime = Time.time;
-            
+            if (GetPlayer(playerId).CompareTag("Player"))
+            {
+                // give the hat to the new player
+                GivesTilHatExplodes--;
+                playerWithHat = playerId;
+                Debug.Log("New hat player :" + playerId);
+                GetPlayer(playerId).SetHat(true, GivesTilHatExplodes);
+                hatPickupTime = Time.time;
+            }
+            else
+            {
+                GetPlayer(playerWithHat).SetHat(true, GivesTilHatExplodes);
+                Debug.Log("Not the GHOST!!!");
+            }
+                
         }
         //else the player is meant to explode
         else
         {
-            //Find the player and give the hat, then change them to a ghost and send the hat back to the player it was taken from
-            playerWithHat = playerId;
-            //GetPlayer(playerId).SetHat(true, GivesTilHatExplodes);
-            GetPlayer(playerId).GhostForm();
 
             GivesTilHatExplodes = 6;
             SendBack.SetHat(true, GivesTilHatExplodes);
-            
+            playerWithHat = SendBackNum;
+            Debug.Log("PlayerWithHat :" + playerWithHat);
+
+            //Find the player then change them to a ghost and send the hat back to the player it was taken from
+            //playerWithHat = playerId;
+            GetPlayer(playerId).GhostForm();
+
+
         }
 
     }

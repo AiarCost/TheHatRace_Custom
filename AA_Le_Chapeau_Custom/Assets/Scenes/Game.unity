@@ -828,7 +828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameEnded: 0
   timeToWin: 15
-  invincibleDuration: 0.5
+  invincibleDuration: 0.75
   playerPrefabLocation: Player
   GhostPlayerMatLocation: 
   spawnPoints:
