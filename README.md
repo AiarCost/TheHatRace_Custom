@@ -1,6 +1,6 @@
 # TheHatRace_Custom
 
-To play, click the link below:
+To play, click the link:
 https://aiarcost.github.io/TheHatRace_Custom/
 
 
